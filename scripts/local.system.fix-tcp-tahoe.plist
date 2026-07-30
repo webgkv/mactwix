@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>local.system.fix-tcp-tahoe</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-c</string>
+        <string>ifconfig awdl0 down; sysctl -w net.inet.tcp.tso=0 net.inet.tcp.ecn_initiate_out=0 net.inet.tcp.ecn_setup_percentage=0 net.inet.tcp.mssdflt=1460 net.inet.tcp.delayed_ack=0 net.inet.tcp.win_scale_factor=8 net.inet.tcp.autorcvbufmax=33554432 net.inet.tcp.autosndbufmax=33554432 net.inet.tcp.sendspace=262144 net.inet.tcp.recvspace=262144 net.inet.tcp.recv_allowed_iaj=100 net.inet.tcp.acc_iaj_react_limit=10000 net.inet.tcp.recv_throttle_minwin=4194304 net.inet.tcp.local_slowstart_flightsize=20 net.inet.tcp.cubic_tcp_friendliness=1 net.inet.tcp.cubic_fast_convergence=1 net.inet.tcp.cubic_use_minrtt=1</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>
