@@ -1,0 +1,6 @@
+#include "Local.xcconfig"
+
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG $(inherited)
+DEBUG_INFORMATION_FORMAT = dwarf
+// Faster local Debug builds on the current chip; Release stays universal.
+ONLY_ACTIVE_ARCH = YES

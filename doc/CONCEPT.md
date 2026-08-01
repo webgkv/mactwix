@@ -63,71 +63,37 @@ The name is a mashup of **Mac** + **Tweak** + **Fix** (Twix).
 ### Technology
 
 - **Language:** Swift 5.9+
-- **UI Framework:** SwiftUI (menubar app, no main window)
+- **UI Framework:** SwiftUI (`MenuBarExtra`, no main window)
 - **Minimum OS:** macOS 13 (Ventura) — works through Tahoe
-- **Privileges:** Privileged helper via SMJobBless (for ifconfig, sysctl)
-- **Build:** Xcode project, no external dependencies
+- **Privileges:** Privileged LaunchDaemon via **SMAppService** (not SMJobBless)
+- **IPC:** XPC (`com.webgkv.mactwix.helper`)
+- **Build:** XcodeGen (`project.yml`) → `MacTwix.xcodeproj`, no external deps
 
 ### Components
 
 ```
-MacTwix/
-├── MacTwix.xcodeproj
-├── MacTwix/
-│   ├── MacTwixApp.swift           # @main, MenuBarExtra
-│   ├── Views/
-│   │   ├── MenuView.swift         # Main dropdown menu
-│   │   ├── StatusView.swift       # Wi-Fi status display
-│   │   └── AppTriggersView.swift  # Manage trigger apps list
-│   ├── Models/
-│   │   ├── NetworkFix.swift       # TCP sysctl model
-│   │   ├── AWDLManager.swift      # AWDL on/off + watchdog
-│   │   └── ProcessWatcher.swift   # Monitor running apps
-│   ├── Helpers/
-│   │   ├── PrivilegedHelper.swift # SMJobBless privileged ops
-│   │   ├── ShellExecutor.swift    # Run shell commands as root
-│   │   └── WiFiInfo.swift         # CoreWLAN link info
-│   └── Resources/
-│       ├── Assets.xcassets        # App icon (chocolate bar 🍫)
-│       └── defaults.json          # Default sysctl values
-├── MacTwixHelper/                 # Privileged helper tool
-│   ├── main.swift
-│   └── Info.plist
-├── scripts/                       # Shell backends (reference)
-│   ├── fix-tcp-tahoe.sh
-│   ├── fix-wifi-tahoe.sh
-│   └── awdl-auto-toggle.sh
-└── doc/
-    └── CONCEPT.md                 # This file
+MacTwix.app
+├── Contents/MacOS/MacTwix              # menubar UI
+├── Contents/MacOS/MacTwixHelper        # root daemon binary
+└── Contents/Library/LaunchDaemons/
+    └── com.webgkv.mactwix.helper.plist
 ```
+
+App registers the daemon once (`SMAppService.daemon.register`). User approves in
+**System Settings → Login Items**. After that, toggles call into the helper over XPC;
+the helper runs `sysctl` / `ifconfig` / Auto AWDL watchdog as root.
 
 ### Privilege Escalation
 
-macOS requires root for `ifconfig` and `sysctl -w`. Options:
+1. **SMAppService daemon** (current) — one-time Login Items approval, then silent.
+2. ~~SMJobBless~~ — deprecated; do not use for new work.
+3. ~~osascript admin~~ — password every time; only acceptable as a last-resort fallback.
 
-1. **SMJobBless** (recommended) — install privileged helper once, user approves with password, then it runs silently forever. Like Little Snitch, Bartender, etc.
-2. **osascript with admin privileges** — prompts password each time. Simpler but annoying.
-3. **LaunchDaemon + XPC** — daemon runs as root, app communicates via XPC. Most robust.
-
-For v1.0: start with **osascript** (simplest), upgrade to **SMJobBless** for v1.1.
+Uninstall: app asks helper to rollback TCP/AWDL, then `SMAppService.unregister()`.
 
 ### Process Watching (Smart Auto-mode)
 
-```swift
-Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { _ in
-    let apps = NSWorkspace.shared.runningApplications
-    let torrentRunning = apps.contains { app in
-        triggerBundleIDs.contains(app.bundleIdentifier ?? "")
-    }
-    if torrentRunning && awdlIsUp {
-        disableAWDL()
-    } else if !torrentRunning && !awdlIsUp {
-        enableAWDL()
-    }
-}
-```
-
-Uses `NSWorkspace` (no polling via pgrep) — native, efficient, instant.
+Runs **inside the helper** (survives app quit) via `NSWorkspace` + 3s timer.
 
 ### Apple Silicon Considerations
 

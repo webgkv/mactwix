@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0450F760755D9094797377A6 /* TriggerCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2E962A34C3E7FAE274A64 /* TriggerCatalog.swift */; };
+		06E5D437386B4AC7E1BF4D5D /* FixValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88B15D8C99CE5685F07543 /* FixValues.swift */; };
+		1E3D4E0A2C4EE42F7129BF82 /* HelperState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F350636C91457FE33A13F9 /* HelperState.swift */; };
+		236EA8DE6CDC92DC28742981 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19BA98DC29581A96E841423 /* MenuView.swift */; };
+		24486945B9CCDBDCA4C92885 /* WatchedAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F761B4B5E5219B05D4C34 /* WatchedAppsView.swift */; };
+		31A8BF8B982C742394BA0930 /* HelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E062716B9758A00007440 /* HelperProtocol.swift */; };
+		363C277DA125396D35AC4C6A /* HelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E062716B9758A00007440 /* HelperProtocol.swift */; };
+		5BB68BB2706456A5F09D0578 /* AWDLWatchdog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BBE2002348D20D0C422D0F /* AWDLWatchdog.swift */; };
+		69186B1B30BB415D2BBC9878 /* HelperMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540D9A780CA3ADA80E715D25 /* HelperMain.swift */; };
+		73AF95CC1AFC6A94D5049A37 /* NetworkOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D186173D8E5BD82953B9F3 /* NetworkOps.swift */; };
+		89480091035C02D49194A536 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25A85FD31F2DB8379903947C /* Assets.xcassets */; };
+		8C097FE4A3E087F75AC1719F /* MacTwixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF281370319A1D4AE7CE9767 /* MacTwixApp.swift */; };
+		8E41E3186CF0761EEB5E7F1E /* AgentLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC25A246334646AFAA0D71 /* AgentLog.swift */; };
+		90923C536BEBFBB19A88C25E /* AgentDebugServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AEAB618CC3D11EFEDBF66B /* AgentDebugServer.swift */; };
+		91586453DEAC1983D195C313 /* TrayIconRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBF572BC080C21B65C48248 /* TrayIconRenderer.swift */; };
+		973740F91CC36E10B5CF3BF1 /* DeveloperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B82BE173075816BAAE1608 /* DeveloperView.swift */; };
+		C13E9540CCDE0D3EB2C14403 /* HelperClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7005A01C2A8EB2D575AA4907 /* HelperClient.swift */; };
+		D286398E892510E89C229725 /* HelperXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AE7A83F6757BE226A73D8 /* HelperXPC.swift */; };
+		D650BCC704EC08C3F3AAD0F4 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D17AEC746378A2F97F14C1 /* AppModel.swift */; };
+		D84F03BB927597E8027DA4A6 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8E7929F549721E2636219B /* PreferencesView.swift */; };
+		DFB050A50AB08866CF3528F7 /* TriggerCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2E962A34C3E7FAE274A64 /* TriggerCatalog.swift */; };
+		E7C58A4F19A160D2AFC17696 /* TCPDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DD3E37CF2ED0C8A1AE567E /* TCPDetailsView.swift */; };
+		EE7023EDFAF760F92688C4A9 /* AutoModeEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E30090841DCFFE974EAC724 /* AutoModeEngine.swift */; };
+		F6D509FE1C17A159BC4F24F1 /* FixValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88B15D8C99CE5685F07543 /* FixValues.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		66A7D042A7F847F8787790D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E900A6D47591B4C8D30CF8B6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7F44FFC34C258EC49BBBF63C;
+			remoteInfo = MacTwixHelper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0B9AE7A83F6757BE226A73D8 /* HelperXPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperXPC.swift; sourceTree = "<group>"; };
+		22DC25A246334646AFAA0D71 /* AgentLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentLog.swift; sourceTree = "<group>"; };
+		24F350636C91457FE33A13F9 /* HelperState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperState.swift; sourceTree = "<group>"; };
+		25A85FD31F2DB8379903947C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		25DD3E37CF2ED0C8A1AE567E /* TCPDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPDetailsView.swift; sourceTree = "<group>"; };
+		2E30090841DCFFE974EAC724 /* AutoModeEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoModeEngine.swift; sourceTree = "<group>"; };
+		3D88B15D8C99CE5685F07543 /* FixValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixValues.swift; sourceTree = "<group>"; };
+		540D9A780CA3ADA80E715D25 /* HelperMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperMain.swift; sourceTree = "<group>"; };
+		5BE2E962A34C3E7FAE274A64 /* TriggerCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerCatalog.swift; sourceTree = "<group>"; };
+		686841C5C32BDEA8705A286C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7005A01C2A8EB2D575AA4907 /* HelperClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperClient.swift; sourceTree = "<group>"; };
+		75BBE2002348D20D0C422D0F /* AWDLWatchdog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWDLWatchdog.swift; sourceTree = "<group>"; };
+		79B82BE173075816BAAE1608 /* DeveloperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperView.swift; sourceTree = "<group>"; };
+		7CBF572BC080C21B65C48248 /* TrayIconRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrayIconRenderer.swift; sourceTree = "<group>"; };
+		7E5A600681B02E47A001CA3D /* MacTwixHelper */ = {isa = PBXFileReference; includeInIndex = 0; path = MacTwixHelper; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3D17AEC746378A2F97F14C1 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		A5D186173D8E5BD82953B9F3 /* NetworkOps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOps.swift; sourceTree = "<group>"; };
+		AB5185FA634324646B1B6FB8 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		AF281370319A1D4AE7CE9767 /* MacTwixApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacTwixApp.swift; sourceTree = "<group>"; };
+		B95F761B4B5E5219B05D4C34 /* WatchedAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedAppsView.swift; sourceTree = "<group>"; };
+		C12E062716B9758A00007440 /* HelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperProtocol.swift; sourceTree = "<group>"; };
+		C7AEAB618CC3D11EFEDBF66B /* AgentDebugServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentDebugServer.swift; sourceTree = "<group>"; };
+		CDBE165FF9DCD9D546B3FAC3 /* MacTwix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacTwix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E55EC5DB66CD9CBC790B700D /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		EB8E7929F549721E2636219B /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		F19BA98DC29581A96E841423 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0E60EDC287460A7268880A55 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				E55EC5DB66CD9CBC790B700D /* Debug.xcconfig */,
+				AB5185FA634324646B1B6FB8 /* Release.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		57958431C8B15C1D528032D7 = {
+			isa = PBXGroup;
+			children = (
+				0E60EDC287460A7268880A55 /* Config */,
+				F93496484E7B8CEC5E8A66DB /* MacTwix */,
+				A119CB78CECDEE733030853B /* MacTwixHelper */,
+				85DF4DDDF70E7AC03A620379 /* Shared */,
+				E4808FBC672F839629B5F42E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		85DF4DDDF70E7AC03A620379 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				3D88B15D8C99CE5685F07543 /* FixValues.swift */,
+				C12E062716B9758A00007440 /* HelperProtocol.swift */,
+				5BE2E962A34C3E7FAE274A64 /* TriggerCatalog.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		A119CB78CECDEE733030853B /* MacTwixHelper */ = {
+			isa = PBXGroup;
+			children = (
+				2E30090841DCFFE974EAC724 /* AutoModeEngine.swift */,
+				75BBE2002348D20D0C422D0F /* AWDLWatchdog.swift */,
+				540D9A780CA3ADA80E715D25 /* HelperMain.swift */,
+				24F350636C91457FE33A13F9 /* HelperState.swift */,
+				0B9AE7A83F6757BE226A73D8 /* HelperXPC.swift */,
+				A5D186173D8E5BD82953B9F3 /* NetworkOps.swift */,
+			);
+			path = MacTwixHelper;
+			sourceTree = "<group>";
+		};
+		E4808FBC672F839629B5F42E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CDBE165FF9DCD9D546B3FAC3 /* MacTwix.app */,
+				7E5A600681B02E47A001CA3D /* MacTwixHelper */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F93496484E7B8CEC5E8A66DB /* MacTwix */ = {
+			isa = PBXGroup;
+			children = (
+				C7AEAB618CC3D11EFEDBF66B /* AgentDebugServer.swift */,
+				22DC25A246334646AFAA0D71 /* AgentLog.swift */,
+				A3D17AEC746378A2F97F14C1 /* AppModel.swift */,
+				25A85FD31F2DB8379903947C /* Assets.xcassets */,
+				79B82BE173075816BAAE1608 /* DeveloperView.swift */,
+				7005A01C2A8EB2D575AA4907 /* HelperClient.swift */,
+				686841C5C32BDEA8705A286C /* Info.plist */,
+				AF281370319A1D4AE7CE9767 /* MacTwixApp.swift */,
+				F19BA98DC29581A96E841423 /* MenuView.swift */,
+				EB8E7929F549721E2636219B /* PreferencesView.swift */,
+				25DD3E37CF2ED0C8A1AE567E /* TCPDetailsView.swift */,
+				7CBF572BC080C21B65C48248 /* TrayIconRenderer.swift */,
+				B95F761B4B5E5219B05D4C34 /* WatchedAppsView.swift */,
+			);
+			path = MacTwix;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15F2C36B7BBD73117323EA64 /* MacTwix */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67FD9804F49F8F8471587C8E /* Build configuration list for PBXNativeTarget "MacTwix" */;
+			buildPhases = (
+				08159EB1FFD2C4CFCD071B4A /* Sources */,
+				98EF7501A8B1E232AB6DBD8B /* Resources */,
+				A3FB672912637E0908EED11C /* Embed Helper + LaunchDaemon plist */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EEE77B61ABA08DC07198F906 /* PBXTargetDependency */,
+			);
+			name = MacTwix;
+			packageProductDependencies = (
+			);
+			productName = MacTwix;
+			productReference = CDBE165FF9DCD9D546B3FAC3 /* MacTwix.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7F44FFC34C258EC49BBBF63C /* MacTwixHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C702165DD7BC2BB88072B660 /* Build configuration list for PBXNativeTarget "MacTwixHelper" */;
+			buildPhases = (
+				333014B064D838618AACEA3C /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacTwixHelper;
+			packageProductDependencies = (
+			);
+			productName = MacTwixHelper;
+			productReference = 7E5A600681B02E47A001CA3D /* MacTwixHelper */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E900A6D47591B4C8D30CF8B6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					15F2C36B7BBD73117323EA64 = {
+						DevelopmentTeam = DVLXT868VT;
+						ProvisioningStyle = Automatic;
+					};
+					7F44FFC34C258EC49BBBF63C = {
+						DevelopmentTeam = DVLXT868VT;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 5DBA8CE6B5FB841815A45783 /* Build configuration list for PBXProject "MacTwix" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 57958431C8B15C1D528032D7;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = E4808FBC672F839629B5F42E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15F2C36B7BBD73117323EA64 /* MacTwix */,
+				7F44FFC34C258EC49BBBF63C /* MacTwixHelper */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		98EF7501A8B1E232AB6DBD8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89480091035C02D49194A536 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A3FB672912637E0908EED11C /* Embed Helper + LaunchDaemon plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Helper + LaunchDaemon plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\nAPP=\"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}\"\nHELPER_BIN=\"${BUILT_PRODUCTS_DIR}/MacTwixHelper\"\nDEST_BIN=\"${APP}/Contents/MacOS/MacTwixHelper\"\nDEST_PLIST_DIR=\"${APP}/Contents/Library/LaunchDaemons\"\nmkdir -p \"${APP}/Contents/MacOS\"\nmkdir -p \"${DEST_PLIST_DIR}\"\ncp -f \"${HELPER_BIN}\" \"${DEST_BIN}\"\ncp -f \"${SRCROOT}/MacTwixHelper/com.webgkv.mactwix.helper.plist\" \"${DEST_PLIST_DIR}/com.webgkv.mactwix.helper.plist\"\nif [ -n \"${CODE_SIGN_IDENTITY:-}\" ] && [ \"${CODE_SIGN_IDENTITY}\" != \"-\" ]; then\n  codesign --force --sign \"${EXPANDED_CODE_SIGN_IDENTITY:-${CODE_SIGN_IDENTITY}}\" \\\n    --identifier \"com.webgkv.mactwix.helper\" \\\n    --entitlements \"${SRCROOT}/MacTwixHelper/MacTwixHelper.entitlements\" \\\n    --options runtime --timestamp=none \"${DEST_BIN}\" || true\nfi\necho \"Embedded helper into ${DEST_BIN}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		08159EB1FFD2C4CFCD071B4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90923C536BEBFBB19A88C25E /* AgentDebugServer.swift in Sources */,
+				8E41E3186CF0761EEB5E7F1E /* AgentLog.swift in Sources */,
+				D650BCC704EC08C3F3AAD0F4 /* AppModel.swift in Sources */,
+				973740F91CC36E10B5CF3BF1 /* DeveloperView.swift in Sources */,
+				F6D509FE1C17A159BC4F24F1 /* FixValues.swift in Sources */,
+				C13E9540CCDE0D3EB2C14403 /* HelperClient.swift in Sources */,
+				31A8BF8B982C742394BA0930 /* HelperProtocol.swift in Sources */,
+				8C097FE4A3E087F75AC1719F /* MacTwixApp.swift in Sources */,
+				236EA8DE6CDC92DC28742981 /* MenuView.swift in Sources */,
+				D84F03BB927597E8027DA4A6 /* PreferencesView.swift in Sources */,
+				E7C58A4F19A160D2AFC17696 /* TCPDetailsView.swift in Sources */,
+				91586453DEAC1983D195C313 /* TrayIconRenderer.swift in Sources */,
+				0450F760755D9094797377A6 /* TriggerCatalog.swift in Sources */,
+				24486945B9CCDBDCA4C92885 /* WatchedAppsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		333014B064D838618AACEA3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BB68BB2706456A5F09D0578 /* AWDLWatchdog.swift in Sources */,
+				EE7023EDFAF760F92688C4A9 /* AutoModeEngine.swift in Sources */,
+				06E5D437386B4AC7E1BF4D5D /* FixValues.swift in Sources */,
+				69186B1B30BB415D2BBC9878 /* HelperMain.swift in Sources */,
+				363C277DA125396D35AC4C6A /* HelperProtocol.swift in Sources */,
+				1E3D4E0A2C4EE42F7129BF82 /* HelperState.swift in Sources */,
+				D286398E892510E89C229725 /* HelperXPC.swift in Sources */,
+				73AF95CC1AFC6A94D5049A37 /* NetworkOps.swift in Sources */,
+				DFB050A50AB08866CF3528F7 /* TriggerCatalog.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EEE77B61ABA08DC07198F906 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7F44FFC34C258EC49BBBF63C /* MacTwixHelper */;
+			targetProxy = 66A7D042A7F847F8787790D5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		029C8D1234B20E29602801CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MacTwix/MacTwix.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MacTwix/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.webgkv.mactwix;
+				PRODUCT_NAME = MacTwix;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		26AE954E45A12AD5FC92FDD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MacTwixHelper/MacTwixHelper.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.webgkv.mactwix.helper;
+				PRODUCT_NAME = MacTwixHelper;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		3F30B4E27E6220E7B1BC5BB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E55EC5DB66CD9CBC790B700D /* Debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		47558D0AA056701FD2FD1DB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MacTwixHelper/MacTwixHelper.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.webgkv.mactwix.helper;
+				PRODUCT_NAME = MacTwixHelper;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		7995DA706AE8F7E023C5FF61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB5185FA634324646B1B6FB8 /* Release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		C4522393E3547C8B66DC3FDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MacTwix/MacTwix.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MacTwix/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.webgkv.mactwix;
+				PRODUCT_NAME = MacTwix;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5DBA8CE6B5FB841815A45783 /* Build configuration list for PBXProject "MacTwix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F30B4E27E6220E7B1BC5BB9 /* Debug */,
+				7995DA706AE8F7E023C5FF61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		67FD9804F49F8F8471587C8E /* Build configuration list for PBXNativeTarget "MacTwix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4522393E3547C8B66DC3FDA /* Debug */,
+				029C8D1234B20E29602801CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C702165DD7BC2BB88072B660 /* Build configuration list for PBXNativeTarget "MacTwixHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47558D0AA056701FD2FD1DB5 /* Debug */,
+				26AE954E45A12AD5FC92FDD2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E900A6D47591B4C8D30CF8B6 /* Project object */;
+}

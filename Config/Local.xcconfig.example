@@ -1,0 +1,6 @@
+// Copy to Local.xcconfig and set your Team ID from:
+// Xcode → Settings → Accounts → Personal Team
+//
+//   cp Config/Local.xcconfig.example Config/Local.xcconfig
+//
+DEVELOPMENT_TEAM = YOUR_TEAM_ID

@@ -1,0 +1,7 @@
+#include "Local.xcconfig"
+
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+SWIFT_COMPILATION_MODE = wholemodule
+// Ship both Intel and Apple Silicon slices.
+ONLY_ACTIVE_ARCH = NO
+ARCHS = $(ARCHS_STANDARD)

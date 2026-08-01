@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="8 58 58 76" width="22" height="22">
+  <!-- Exact T subpath from twix-3.svg. Only fill changes to black so macOS
+       can use it as a monochrome template image; geometry is untouched. -->
+  <path d="M13.965 98.684l-1.528 8.26 17.042-10.468c-1.838 8.04-2.818 15.542-3.85 23.464l-.943 7.098c0 .002 7.844 2.434 7.844 2.434l.075-.502c1.69-11.35 3.29-21.604 5.758-32.146l.09-.383-5.403-1.784 26.309-13.812 1.979-12.105-47.373 29.944z" fill="#000"/>
+</svg>
