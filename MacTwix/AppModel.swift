@@ -228,6 +228,7 @@ final class AppModel: ObservableObject {
             statusMessage = "Register failed: \(error.localizedDescription)"
             AgentLog.error("helper register failed: \(error.localizedDescription)")
         }
+        registerAppAtLogin()
         refreshHelperStatus()
         busy = false
         publishSnapshot()
@@ -237,6 +238,18 @@ final class AppModel: ObservableObject {
         AgentLog.event("openLoginItems")
         if let url = URL(string: "x-apple.systempreferences:com.apple.LoginItems-Settings.extension") {
             NSWorkspace.shared.open(url)
+        }
+    }
+
+    func registerAppAtLogin() {
+        AgentLog.event("registerAppAtLogin")
+        do {
+            try SMAppService.mainApp.register()
+            statusMessage = ""
+            AgentLog.info("app login item registered")
+        } catch {
+            statusMessage = "Login item: \(error.localizedDescription)"
+            AgentLog.error("app login item failed: \(error.localizedDescription)")
         }
     }
 
