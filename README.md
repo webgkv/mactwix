@@ -1,87 +1,188 @@
-# MacTwix
+<p align="center">
+  <img src="Assets/AppIcon.svg" width="128" height="128" alt="MacTwix icon"/>
+</p>
 
-**macOS system tweak utility** — menubar app for network optimizations (AWDL / TCP).
+<h1 align="center">MacTwix</h1>
 
-Like GNOME Tweaks, but for macOS. Applies the same fixes as the shell scripts, via a privileged helper (one-time system approval).
+<p align="center">
+  <b>macOS network tweak utility</b><br>
+  One-click TCP optimization, AWDL control, and smart auto-mode — all from the menubar.
+</p>
 
-## Status
+<p align="center">
+  <img src="https://img.shields.io/badge/platform-macOS_13%2B-blue" alt="macOS 13+"/>
+  <img src="https://img.shields.io/badge/arch-universal_(arm64_%2B_x86__64)-green" alt="Universal Binary"/>
+  <img src="https://img.shields.io/badge/license-MIT-lightgrey" alt="MIT License"/>
+</p>
 
-- ✅ Menubar app (`MacTwix`) + privileged helper (`MacTwixHelper`) via **SMAppService**
-- ✅ TCP optimize / rollback, AWDL on/off, Auto AWDL, uninstall
-- ✅ CLI scripts kept as reference / emergency fallback (`scripts/`)
-- ⏳ Requires selecting your **Personal Team** in Xcode once (free Apple ID)
+---
 
-## Build (from source — recommended)
+## What it does
 
-1. Install Xcode 15+ (macOS 13+).
-2. Open `MacTwix.xcodeproj` (or regenerate: `brew install xcodegen && xcodegen generate`).
-3. Xcode → **Settings → Accounts** → add your Apple ID (free is fine).
-4. Select target **MacTwix** → **Signing & Capabilities** → Team → **Personal Team**.
-5. Repeat for target **MacTwixHelper** (same Team).
-6. Product → **Build** (⌘B), then **Run** (⌘R).
+MacTwix is a lightweight menubar app that applies network-level optimizations to macOS without requiring repeated password prompts. Think of it as **GNOME Tweaks, but for macOS networking**.
+
+- **TCP Stack Optimization** — applies 17 sysctl knobs (buffer sizes, ECN, TSO, delayed ACK, CUBIC tuning) for better throughput and lower latency
+- **AWDL Control** — disable the hidden `awdl0` interface that causes Wi-Fi interference (AirDrop/Handoff uses it)
+- **Smart Auto Mode** — automatically disables AWDL when torrent clients (or any configured app) are running, re-enables when they quit
+- **Persistent** — privileged helper runs at boot, no password needed after one-time setup
+- **Universal Binary** — single app works on both Intel and Apple Silicon Macs
+
+## Screenshots
+
+| Menubar popover | TCP Details | Watched Apps |
+|:---:|:---:|:---:|
+| Quick status & toggles | Per-knob view with current/optimized/default values | Configure trigger apps for Auto AWDL |
+
+## Install
+
+### Option A: Download DMG
+
+1. Download `MacTwix.dmg` from [Releases](../../releases)
+2. Drag `MacTwix.app` to `/Applications`
+3. Open MacTwix — click the **T** icon in menubar
+4. Click the warning banner → **Install Helper**
+5. Approve in **System Settings → General → Login Items**
+
+> **Note:** Gatekeeper will warn about unsigned builds. Right-click → Open to bypass, or build from source.
+
+### Option B: Build from source (recommended)
+
+```bash
+brew install xcodegen
+git clone https://github.com/webgkv/mactwix.git
+cd mactwix
+xcodegen generate
+open MacTwix.xcodeproj
+```
+
+1. Xcode → **Settings → Accounts** → add your Apple ID (free is fine)
+2. Select target **MacTwix** → Signing & Capabilities → Team → your **Personal Team**
+3. Repeat for target **MacTwixHelper**
+4. **⌘R** to build & run
 
 Optional: put your Team ID in `Config/Local.xcconfig` (gitignored):
-
 ```
 DEVELOPMENT_TEAM = YOURTEAMID
 ```
 
-### First launch
+## How it works
 
-1. Menubar → **Install Helper**
-2. Enable MacTwix in **System Settings → General → Login Items**
-3. Use toggles (TCP / AWDL / Auto). No password per toggle after that.
-4. **Uninstall Helper…** rolls back settings and unregisters the daemon.
+```
+┌─────────────┐         XPC          ┌──────────────────┐
+│  MacTwix    │◄─────────────────────►│  MacTwixHelper   │
+│  (menubar)  │    Mach service       │  (root daemon)   │
+│  user-space │                       │  LaunchDaemon    │
+└─────────────┘                       └──────────────────┘
+                                             │
+                                      ┌──────┴──────┐
+                                      │ sysctl      │
+                                      │ ifconfig    │
+                                      │ pmset       │
+                                      │ lsappinfo   │
+                                      └─────────────┘
+```
 
-Gatekeeper may warn on unsigned/ad‑hoc downloads. Building from this source with *your* Team avoids that on your machine.
+- **One-time privilege escalation** via `SMAppService` — no repeated password prompts
+- Helper persists across reboots (`KeepAlive` LaunchDaemon)
+- AWDL Watchdog re-disables `awdl0` every ~2.5s if macOS re-enables it (common on Apple Silicon)
+- App auto-launches at login for tray icon visibility
+
+## Features
+
+| Feature | Description |
+|---------|-------------|
+| TCP Optimized | Apply/rollback 17 sysctl parameters |
+| AWDL Disabled | Manual awdl0 down/up |
+| Auto AWDL (Smart) | Monitor apps → disable AWDL when trigger app is running |
+| Watched Apps | Configurable list + "Torrents Apps" preset (12 clients) |
+| Apply at Login | Re-apply TCP optimizations on every boot |
+| Uninstall | Full rollback: TCP defaults, AWDL up, daemon removed |
+| Agent Debug API | `localhost:18765` — real-time status for AI/automation |
+
+## Compatibility
+
+| Platform | AWDL | TCP | Auto | Watchdog |
+|----------|:----:|:---:|:----:|:--------:|
+| Intel Mac | ✅ | ✅ | ✅ | — |
+| Apple Silicon | ✅ | ✅ | ✅ | ✅ |
 
 ## Project layout
 
 ```
 mactwix/
-├── MacTwix/                 # Menubar SwiftUI app
-├── MacTwixHelper/           # Root LaunchDaemon (XPC)
-├── Shared/                  # Protocol + FixValues
-├── Config/                  # xcconfig (Local.xcconfig is gitignored)
-├── MacTwix.xcodeproj/
-├── project.yml              # XcodeGen source of truth
-├── scripts/                 # CLI reference backends
-└── doc/
+├── MacTwix/              # SwiftUI menubar app
+│   ├── AppModel.swift    # State management + helper communication
+│   ├── MenuView.swift    # Popover UI
+│   ├── WatchedAppsView   # Trigger apps config window
+│   ├── TCPDetailsView    # Per-knob TCP table
+│   ├── PreferencesView   # Helper install/uninstall, settings
+│   ├── DeveloperView     # Agent API info (hidden, 7-tap on version)
+│   ├── AgentDebugServer  # localhost HTTP API
+│   └── AgentLog          # Ring-buffer logger
+├── MacTwixHelper/        # Privileged root daemon
+│   ├── HelperXPC         # XPC service + client auth
+│   ├── NetworkOps        # sysctl, ifconfig, pmset operations
+│   ├── AutoModeEngine    # App-watching + AWDL toggle
+│   └── AWDLWatchdog      # Periodic AWDL re-assert
+├── Shared/               # Protocol, FixValues, TriggerCatalog
+├── Config/               # xcconfig files
+├── Assets/               # SVG icons
+├── scripts/              # CLI fallback (reference)
+├── doc/                  # CONCEPT.md, AGENT_API.md
+└── project.yml           # XcodeGen spec
 ```
+
+## Agent Debug API
+
+While MacTwix is running, monitor state in real-time:
+
+```bash
+# Health check
+curl http://127.0.0.1:18765/health
+
+# Full status JSON
+curl http://127.0.0.1:18765/status
+
+# Recent logs
+curl http://127.0.0.1:18765/logs?limit=50
+
+# File paths
+curl http://127.0.0.1:18765/paths
+```
+
+Or tail the log file:
+```bash
+tail -f ~/Library/Logs/MacTwix/agent.log
+```
+
+See [doc/AGENT_API.md](doc/AGENT_API.md) for full documentation.
 
 ## CLI scripts (fallback)
 
+The original shell scripts are kept as reference/emergency fallback:
+
 ```bash
-sudo ./scripts/fix-wifi-tahoe.sh --install
-sudo ./scripts/fix-wifi-tahoe.sh --auto
 sudo ./scripts/fix-tcp-tahoe.sh --install
-./scripts/fix-wifi-tahoe.sh --status
+sudo ./scripts/fix-wifi-tahoe.sh --install
+./scripts/fix-tcp-tahoe.sh --status
 ```
 
 Prefer the app once the helper is installed.
 
-## Agent debug API
-
-While MacTwix is running, Cursor can observe live state:
-
-```bash
-curl -s http://127.0.0.1:18765/status
-tail -f ~/Library/Logs/MacTwix/agent.log
-```
-
-See [doc/AGENT_API.md](doc/AGENT_API.md).
-
-## Compatibility
-
-Release builds are **universal** (`arm64` + `x86_64`) — one `.app` for Intel and Apple Silicon.
-
-| Platform | AWDL | TCP | Auto |
-|----------|------|-----|------|
-| Intel Mac | Full | Full | Full |
-| Apple Silicon | Full + AWDL watchdog | Full | Full |
-
-On Apple Silicon (and some Tahoe Intel builds) macOS may re-enable `awdl0`; the helper watchdog re-disables it every ~2.5s while AWDL-off / Auto+torrent is active.
-
 ## License
 
 MIT
+
+---
+
+## Support
+
+If you find MacTwix useful and want to support development or say thanks, donations are welcome:
+
+| Network | Address |
+|---------|---------|
+| Bitcoin (BTC) | `bc1q0gyk6e77c2pxq7csjedk9v7wxl3du3wr3s7jp6` |
+| Ethereum (ETH / ERC-20) | `0xBe8188DaB4b908d626CfbAC58A0B91F1c521E634` |
+| USDT (TRC-20) | `TVAMSfenXAwdpUM2fkujpVtFqBXxecMQCe` |
+| TON | `UQBrALwkTwL5mU9B88YCw1WX87HwEqArWkvpDEqXc3efgThF` |
+| Solana (SOL) | `B1iGj1xRPw1f8o9txqbMnbWDZvVcp3ah2chjD8pSokQT` |
