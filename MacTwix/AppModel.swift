@@ -37,7 +37,7 @@ final class AppModel: ObservableObject {
     @Published var tcpOptimized = false
     @Published var awdlDisabled = false
     @Published var autoMode = false
-    @Published var applyAtLogin = true
+    @Published var applyAtLogin = false
     @Published var tcpOptimizedCount = 0
     @Published var tcpTotal = FixValues.tcpSettings.count
     @Published var smartAWDLActive = false
@@ -116,6 +116,10 @@ final class AppModel: ObservableObject {
             "MacBookPro18,4": "MacBook Pro 14\" M1 Pro/Max",
             "MacBookPro17,1": "MacBook Pro 13\" M1 (2020)",
             "MacBookAir10,1": "MacBook Air M1 (2020)",
+            "MacBookPro16,1": "MacBook Pro 16\" i9 (2019)",
+            "MacBookPro16,2": "MacBook Pro 13\" (2020)",
+            "MacBookPro16,3": "MacBook Pro 13\" (2020)",
+            "MacBookPro16,4": "MacBook Pro 16\" i9 (2019)",
             "Macmini9,1": "Mac mini M1 (2020)",
             "iMac21,1": "iMac 24\" M1 (2021)",
             "iMac21,2": "iMac 24\" M1 (2021)",
@@ -215,11 +219,10 @@ final class AppModel: ObservableObject {
 
     func installHelper() {
         busy = true
-        statusMessage = "Registering helper…"
         AgentLog.event("installHelper")
         do {
             try SMAppService.daemon(plistName: HelperConstants.helperPlistName).register()
-            statusMessage = "Approve MacTwix in System Settings → Login Items."
+            statusMessage = ""
             AgentLog.info("helper register OK")
         } catch {
             statusMessage = "Register failed: \(error.localizedDescription)"

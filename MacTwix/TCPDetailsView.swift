@@ -16,7 +16,7 @@ struct TCPDetailsView: View {
             HStack {
                 Button("Apply Optimized") { model.setTCP(true) }
                     .disabled(model.busy || !model.connected)
-                Button("Rollback") { model.setTCP(false) }
+                Button("Apple Default") { model.setTCP(false) }
                     .disabled(model.busy || !model.connected)
                 Spacer()
                 Button("Refresh") {

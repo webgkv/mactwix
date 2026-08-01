@@ -6,7 +6,7 @@ final class HelperState {
     var tcpOptimized = false
     var awdlForcedDown = false
     var autoMode = false
-    var applyTCPAtLogin = true
+    var applyTCPAtLogin = false
     var triggerBundleIDs: [String] = TriggerCatalog.defaultTriggerBundleIDs
 
     private struct Disk: Codable {

@@ -87,7 +87,7 @@ final class NetworkOps {
     }
 
     func reapplyPersistedPolicy() {
-        if HelperState.shared.tcpOptimized || HelperState.shared.applyTCPAtLogin {
+        if HelperState.shared.tcpOptimized && HelperState.shared.applyTCPAtLogin {
             try? applyTCPOptimized()
         }
         if HelperState.shared.awdlForcedDown && !AutoModeEngine.shared.isEnabled {

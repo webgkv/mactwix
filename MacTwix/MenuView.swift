@@ -53,7 +53,8 @@ struct MenuView: View {
 
     private var helperWarning: some View {
         Button {
-            model.showHelperInstallPrompt = true
+            openWindow(id: "preferences")
+            bringWindowToFront("Preferences")
         } label: {
             HStack(spacing: 8) {
                 Image(systemName: "exclamationmark.triangle.fill")
@@ -62,7 +63,7 @@ struct MenuView: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Helper not installed")
                         .font(.callout.weight(.medium))
-                    Text("Tap to install")
+                    Text("Tap to open Preferences and install")
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
@@ -73,12 +74,6 @@ struct MenuView: View {
             .clipShape(RoundedRectangle(cornerRadius: 6))
         }
         .buttonStyle(.plain)
-        .alert("Install Helper", isPresented: $model.showHelperInstallPrompt) {
-            Button("Install") { model.installHelper() }
-            Button("Later", role: .cancel) {}
-        } message: {
-            Text("MacTwix needs a privileged helper to apply network optimizations.\n\nAfter install, approve it in System Settings → Login Items.")
-        }
     }
 
     private var statusBlock: some View {
