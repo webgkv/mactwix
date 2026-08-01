@@ -29,9 +29,9 @@ MacTwix is a lightweight menubar app that applies network-level optimizations to
 
 ## Screenshots
 
-| Menubar popover | TCP Details | Watched Apps |
+| Menubar popover | TCP Details | Preferences |
 |:---:|:---:|:---:|
-| Quick status & toggles | Per-knob view with current/optimized/default values | Configure trigger apps for Auto AWDL |
+| <img src="doc/screenshots/menu.png" width="280"/> | <img src="doc/screenshots/tcp-details.png" width="280"/> | <img src="doc/screenshots/preferences.png" width="280"/> |
 
 ## Install
 
