@@ -23,7 +23,7 @@
     <key>LSUIElement</key>
     <true/>
     <key>NSHumanReadableCopyright</key>
-    <string>Copyright © 2026 MacTwix. MIT License.</string>
+    <string>Copyright © 2026 MacTwix. GPL-3.0 License.</string>
     <key>NSPrincipalClass</key>
     <string>NSApplication</string>
 </dict>

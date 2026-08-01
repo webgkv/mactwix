@@ -171,7 +171,11 @@ Prefer the app once the helper is installed.
 
 ## License
 
-MIT
+This project is licensed under the **GNU General Public License v3.0** — see [LICENSE](LICENSE) for details.
+
+**TL;DR:** Free to use, modify, and distribute. Forks must remain open-source under the same license. Attribution to the original author is required.
+
+For commercial licensing (use without GPL obligations), contact the author.
 
 ---
 
