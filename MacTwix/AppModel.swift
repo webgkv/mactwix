@@ -153,7 +153,7 @@ final class AppModel: ObservableObject {
     @Published var checkingUpdate = false
     @Published var downloadingUpdate = false
 
-    private static let currentVersion = "1.0.0"
+    private static let currentVersion = "1.0.1"
     private static let githubRepo = "webgkv/mactwix"
     private let lastUpdateCheckKey = "lastUpdateCheckTimestamp"
 

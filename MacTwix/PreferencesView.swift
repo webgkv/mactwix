@@ -73,7 +73,7 @@ struct PreferencesView: View {
                 HStack {
                     Text("Version")
                     Spacer()
-                    Text("1.0.0")
+                    Text("1.0.1")
                         .onTapGesture {
                             versionTapCount += 1
                             if versionTapCount >= 7 {

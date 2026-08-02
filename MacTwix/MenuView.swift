@@ -55,7 +55,7 @@ struct MenuView: View {
                     .foregroundStyle(.orange)
                     .clipShape(Capsule())
             }
-            Text("v1.0")
+            Text("v1.0.1")
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
