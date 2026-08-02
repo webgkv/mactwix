@@ -464,7 +464,6 @@ final class AppModel: ObservableObject {
         autoMode = dict["autoMode"] as? Bool ?? false
         applyAtLogin = dict["applyTCPAtLogin"] as? Bool ?? true
         smartAWDLActive = dict["smartAWDLActive"] as? Bool ?? false
-        archLabel = dict["arch"] as? String ?? "—"
         if let tcp = dict["tcp"] as? [String: String] {
             tcpValues = tcp
         }
