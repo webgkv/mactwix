@@ -15,6 +15,16 @@ struct MenuView: View {
                 Divider().padding(.vertical, 8)
             }
 
+            if model.tcpBannerVisible {
+                tcpWarning
+                Divider().padding(.vertical, 8)
+            }
+
+            if model.updateAvailable != nil {
+                updateBanner
+                Divider().padding(.vertical, 8)
+            }
+
             statusBlock
             Divider().padding(.vertical, 8)
             quickToggles
@@ -71,6 +81,56 @@ struct MenuView: View {
             }
             .padding(8)
             .background(Color.yellow.opacity(0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var tcpWarning: some View {
+        Button {
+            openWindow(id: "tcp-details")
+            bringWindowToFront("TCP Details")
+        } label: {
+            HStack(spacing: 8) {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .foregroundStyle(.orange)
+                    .font(.body)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("TCP not optimized")
+                        .font(.callout.weight(.medium))
+                    Text("Tap to open TCP Details")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+            }
+            .padding(8)
+            .background(Color.orange.opacity(0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var updateBanner: some View {
+        Button {
+            openWindow(id: "preferences")
+            bringWindowToFront("Preferences")
+        } label: {
+            HStack(spacing: 8) {
+                Image(systemName: "arrow.down.circle.fill")
+                    .foregroundStyle(.blue)
+                    .font(.body)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Update available v\(model.updateAvailable ?? "")")
+                        .font(.callout.weight(.medium))
+                    Text("Tap to open Preferences")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+            }
+            .padding(8)
+            .background(Color.blue.opacity(0.1))
             .clipShape(RoundedRectangle(cornerRadius: 6))
         }
         .buttonStyle(.plain)

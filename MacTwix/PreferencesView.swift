@@ -31,6 +31,44 @@ struct PreferencesView: View {
                 .disabled(!model.connected)
             }
 
+            Section("Updates") {
+                HStack {
+                    Button {
+                        Task { await model.checkForUpdates() }
+                    } label: {
+                        if model.checkingUpdate {
+                            ProgressView()
+                                .controlSize(.small)
+                                .padding(.trailing, 4)
+                            Text("Checking…")
+                        } else {
+                            Text("Check for Updates")
+                        }
+                    }
+                    .disabled(model.checkingUpdate)
+
+                    if let version = model.updateAvailable {
+                        Spacer()
+                        Button {
+                            model.downloadAndOpenUpdate()
+                        } label: {
+                            if model.downloadingUpdate {
+                                ProgressView()
+                                    .controlSize(.small)
+                                    .padding(.trailing, 4)
+                                Text("Downloading…")
+                            } else {
+                                Text("Update to v\(version)")
+                            }
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(model.downloadingUpdate)
+                    }
+                }
+
+                Toggle("Don't check automatically", isOn: $model.skipUpdates)
+            }
+
             Section("About") {
                 HStack {
                     Text("Version")
@@ -50,7 +88,7 @@ struct PreferencesView: View {
         }
         .formStyle(.grouped)
         .padding(8)
-        .frame(minWidth: 480, minHeight: 300)
+        .frame(minWidth: 480, minHeight: 380)
         .onAppear { AgentLog.event("preferences window appeared") }
     }
 

@@ -137,6 +137,26 @@ final class AppModel: ObservableObject {
         helperStatus != .enabled
     }
 
+    // MARK: - TCP Banner
+    @Published var userChoseDefaults: Bool = UserDefaults.standard.bool(forKey: "userChoseDefaults")
+
+    var tcpBannerVisible: Bool {
+        connected && !tcpOptimized && !userChoseDefaults
+    }
+
+    // MARK: - Updates
+    @Published var updateAvailable: String?
+    @Published var updateDownloadURL: URL?
+    @Published var skipUpdates: Bool = UserDefaults.standard.bool(forKey: "skipUpdates") {
+        didSet { UserDefaults.standard.set(skipUpdates, forKey: "skipUpdates") }
+    }
+    @Published var checkingUpdate = false
+    @Published var downloadingUpdate = false
+
+    private static let currentVersion = "1.0.0"
+    private static let githubRepo = "webgkv/mactwix"
+    private let lastUpdateCheckKey = "lastUpdateCheckTimestamp"
+
     init() {
         if let saved = UserDefaults.standard.array(forKey: triggersDefaultsKey) as? [String], !saved.isEmpty {
             triggerBundleIDs = saved
@@ -154,6 +174,9 @@ final class AppModel: ObservableObject {
                 await refreshFromHelper()
                 try? await Task.sleep(nanoseconds: 2_000_000_000)
             }
+        }
+        if !skipUpdates {
+            Task { await checkForUpdatesIfNeeded() }
         }
     }
 
@@ -287,6 +310,13 @@ final class AppModel: ObservableObject {
     func setTCP(_ enabled: Bool) {
         busy = true
         AgentLog.event("setTCP \(enabled)")
+        if !enabled {
+            userChoseDefaults = true
+            UserDefaults.standard.set(true, forKey: "userChoseDefaults")
+        } else {
+            userChoseDefaults = false
+            UserDefaults.standard.set(false, forKey: "userChoseDefaults")
+        }
         client.setTCPOptimized(enabled) { [weak self] ok, err in
             Task { @MainActor in
                 self?.busy = false
@@ -445,6 +475,110 @@ final class AppModel: ObservableObject {
         if prevSmart != smartAWDLActive {
             AgentLog.event("smartAWDLActive → \(smartAWDLActive)")
         }
+    }
+
+    // MARK: - Update Checker
+
+    func checkForUpdatesIfNeeded() async {
+        let lastCheck = UserDefaults.standard.double(forKey: lastUpdateCheckKey)
+        let now = Date().timeIntervalSince1970
+        guard now - lastCheck > 86400 else { return }
+        await checkForUpdates()
+    }
+
+    func checkForUpdates() async {
+        checkingUpdate = true
+        defer { checkingUpdate = false }
+
+        let urlStr = "https://api.github.com/repos/\(Self.githubRepo)/releases/latest"
+        guard let url = URL(string: urlStr) else { return }
+
+        do {
+            var request = URLRequest(url: url)
+            request.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
+            request.timeoutInterval = 10
+
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                AgentLog.warn("Update check: non-200 response")
+                return
+            }
+
+            guard let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let tagName = json["tag_name"] as? String
+            else {
+                AgentLog.warn("Update check: could not parse response")
+                return
+            }
+
+            let remoteVersion = tagName.hasPrefix("v") ? String(tagName.dropFirst()) : tagName
+
+            if isNewerVersion(remoteVersion, than: Self.currentVersion) {
+                updateAvailable = remoteVersion
+                if let assets = json["assets"] as? [[String: Any]],
+                   let dmgAsset = assets.first(where: { ($0["name"] as? String)?.hasSuffix(".dmg") == true }),
+                   let downloadStr = dmgAsset["browser_download_url"] as? String,
+                   let downloadURL = URL(string: downloadStr) {
+                    updateDownloadURL = downloadURL
+                }
+                AgentLog.event("Update available: v\(remoteVersion)")
+            } else {
+                updateAvailable = nil
+                updateDownloadURL = nil
+                AgentLog.info("No update available (current: \(Self.currentVersion), latest: \(remoteVersion))")
+            }
+
+            UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: lastUpdateCheckKey)
+        } catch {
+            AgentLog.warn("Update check failed: \(error.localizedDescription)")
+        }
+        publishSnapshot()
+    }
+
+    func downloadAndOpenUpdate() {
+        guard let url = updateDownloadURL, let version = updateAvailable else { return }
+        downloadingUpdate = true
+        AgentLog.event("Downloading update v\(version)")
+
+        let task = URLSession.shared.downloadTask(with: url) { [weak self] localURL, response, error in
+            Task { @MainActor in
+                guard let self else { return }
+                self.downloadingUpdate = false
+
+                guard let localURL, error == nil else {
+                    self.statusMessage = "Download failed: \(error?.localizedDescription ?? "unknown")"
+                    AgentLog.error(self.statusMessage)
+                    return
+                }
+
+                let downloads = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first!
+                let dest = downloads.appendingPathComponent("MacTwix-v\(version).dmg")
+                try? FileManager.default.removeItem(at: dest)
+
+                do {
+                    try FileManager.default.moveItem(at: localURL, to: dest)
+                    NSWorkspace.shared.open(dest)
+                    self.statusMessage = "Downloaded to \(dest.lastPathComponent)"
+                    AgentLog.info("Update downloaded: \(dest.path)")
+                } catch {
+                    self.statusMessage = "Move failed: \(error.localizedDescription)"
+                    AgentLog.error(self.statusMessage)
+                }
+            }
+        }
+        task.resume()
+    }
+
+    private func isNewerVersion(_ remote: String, than current: String) -> Bool {
+        let r = remote.split(separator: ".").compactMap { Int($0) }
+        let c = current.split(separator: ".").compactMap { Int($0) }
+        for i in 0..<max(r.count, c.count) {
+            let rv = i < r.count ? r[i] : 0
+            let cv = i < c.count ? c[i] : 0
+            if rv > cv { return true }
+            if rv < cv { return false }
+        }
+        return false
     }
 
     private func publishSnapshot() {
