@@ -2,12 +2,12 @@ name: MacTwix
 options:
   bundleIdPrefix: com.webgkv
   deploymentTarget:
-    macOS: "13.0"
+    macOS: "26.0"
   createIntermediateGroups: true
 settings:
   base:
     SWIFT_VERSION: "5.9"
-    MACOSX_DEPLOYMENT_TARGET: "13.0"
+    MACOSX_DEPLOYMENT_TARGET: "26.0"
     CODE_SIGN_STYLE: Automatic
     CODE_SIGN_IDENTITY: "Apple Development"
     ENABLE_HARDENED_RUNTIME: YES

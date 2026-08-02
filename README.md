@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/platform-macOS_13%2B-blue" alt="macOS 13+"/>
+  <img src="https://img.shields.io/badge/platform-macOS_26%2B-blue" alt="macOS 26+"/>
   <img src="https://img.shields.io/badge/arch-universal_(arm64_%2B_x86__64)-green" alt="Universal Binary"/>
   <img src="https://img.shields.io/badge/license-GPL--3.0-blue" alt="GPL-3.0 License"/>
 </p>

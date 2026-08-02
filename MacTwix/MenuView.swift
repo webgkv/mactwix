@@ -166,8 +166,8 @@ struct MenuView: View {
             )) {
                 Text("TCP Optimized")
             }
+            .tint(.blue)
             .disabled(model.busy || !model.connected)
-            .tint(.accentColor)
 
             Toggle(isOn: Binding(
                 get: { model.awdlDisabled },
@@ -175,8 +175,8 @@ struct MenuView: View {
             )) {
                 Text("AWDL Disabled")
             }
+            .tint(.blue)
             .disabled(model.busy || !model.connected || model.autoMode)
-            .tint(.accentColor)
 
             Toggle(isOn: Binding(
                 get: { model.autoMode },
@@ -184,8 +184,8 @@ struct MenuView: View {
             )) {
                 Text("Auto AWDL")
             }
+            .tint(.blue)
             .disabled(model.busy || !model.connected)
-            .tint(.accentColor)
         }
     }
 

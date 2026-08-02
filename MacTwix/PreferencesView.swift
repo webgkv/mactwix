@@ -28,8 +28,8 @@ struct PreferencesView: View {
                     get: { model.applyAtLogin },
                     set: { model.setApplyAtLogin($0) }
                 ))
+                .tint(.blue)
                 .disabled(!model.connected)
-                .tint(.accentColor)
             }
 
             Section("Updates") {
@@ -68,7 +68,7 @@ struct PreferencesView: View {
                 }
 
                 Toggle("Don't check automatically", isOn: $model.skipUpdates)
-                    .tint(.accentColor)
+                    .tint(.blue)
             }
 
             Section("About") {
